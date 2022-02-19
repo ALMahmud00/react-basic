@@ -4,14 +4,14 @@ import React, { Component } from "react";
 class Counter extends Component {
     state = {
         count: 0,
-        tags : ["tag1", "tag2", "tag3"]
+        tags : []
     };
 
     render() {
         return(
         <div className="counter-back">
             <span className={this.getBadgeStyle()} >{this.formatCounter()}</span>
-            <button onClick={this.handleIncrementValue} className="btn btn-secondary btn-sm m-2">  Increment  </button>
+            <button onClick={this.handleIncrementValue} className="btn btn-warning btn-sm m-2">  Increment  </button>
             <button onClick={this.handleResetValue} className="btn btn-danger btn-sm m-2">  Reset  </button>
             
             {this.renderTags()}
@@ -27,15 +27,24 @@ class Counter extends Component {
 
 
     getBadgeStyle(){
-        return this.state.count === 0 ? "badge badge-danger m-5" : 
-                this.state.count % 2 == 0 ? "badge badge-primary m-5" :  "badge badge-warning m-5"
+        return this.state.count === 0 ? "badge badge-danger m-3" :  "badge badge-warning m-3"
     }
 
     handleIncrementValue = () => {
-        this.setState({count: this.state.count + 1 });
+        let tagState = this.state.tags;
+        tagState.push(this.state.count+1);
+
+        this.setState({
+                count: this.state.count + 1,
+                tags: tagState
+        });
     }
     handleResetValue = () => {
-        this.setState({count: 0 });
+        this.setState(
+            {
+                count: 0 ,
+                tags: [] 
+            });
     }
 
     formatCounter(){
