@@ -8,3 +8,7 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
+  .btn-manual {
+    color: white;
+    background-color: rgb(9, 138, 37);
+  }

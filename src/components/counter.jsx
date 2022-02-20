@@ -10,19 +10,24 @@ class Counter extends Component {
     render() {
         console.log("Prop", this.props);
         return(
-        <div>
-            {this.props.children}
-            <span className={this.getBadgeStyle()} >{this.formatCounter()}</span>
-            <button onClick={()=> this.handleIncrementValue({id:199})} className="btn btn-warning btn-sm m-2">  Increment  </button>
-            <button onClick={this.handleResetValue} className="btn btn-secondary btn-sm m-2">  Reset  </button>
-            <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">  Delete  </button>
-            {this.renderTags()}
+        <div className="card">
+            <div className="card-body">
+                <h4 className="card-title">#{this.props.counter.id}</h4>
+                
+                <span className={this.getBadgeStyle()} >{this.formatCounter()}</span>
+                <button onClick={()=> this.handleIncrementValue({id:199})} className="btn btn-warning btn-sm m-2">  Increment  </button>
+                <button onClick={this.handleResetValue} className="btn btn-secondary btn-sm m-2">  Reset  </button>
+                <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">  Delete  </button>
+
+                <p className="card-text"> {this.renderTags()} </p>
+            </div>
+           
         </div>
         );
     }
 
     renderTags(){
-        if(this.state.tags.length === 0) return <p>there is no element</p>
+        if(this.state.tags.length === 0) return "there is no element"
         
         return <ul >{this.state.tags.map(tg=><li key={tg}>{tg}</li>)}</ul>
     }

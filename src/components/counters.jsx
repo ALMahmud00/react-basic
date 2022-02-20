@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Counter from "./counter"
+import 'bootstrap/dist/css/bootstrap.css'
 
 class Counters extends Component{
     state = {
@@ -13,11 +14,12 @@ class Counters extends Component{
     render(){
         return(
             <div> 
-             {this.state.counters.map(mp => ( 
-             <Counter key={mp.id} counter = {mp} onDelete = {this.handleDeleteItem}>
-                 <h4>Counter Serial: {mp.id}</h4>
-             </Counter>
-             ))}
+                <button onClick={this.handleAddItem} className='btn m-2 btn-sm btn-manual'>Add +</button>
+
+                {this.state.counters.map(mp => 
+                ( <Counter key={mp.id} counter = {mp} onDelete = {this.handleDeleteItem}>
+                         </Counter> 
+                ))}
             </div>
         );
     }
@@ -27,6 +29,16 @@ class Counters extends Component{
         let data = this.state.counters.filter(fl => fl.id !== id);
         this.setState({counters: data});
     }
+
+    handleAddItem = () => {
+
+        let data = this.state.counters;
+        data.push({id:this.state.counters.length+1, value: 0});
+        this.setState({counters: data});
+    }
+
+    
+    
 }
 
 export default Counters;
