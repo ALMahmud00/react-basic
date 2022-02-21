@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 class Counters extends Component{
     state = {
         counters :[
-            {sl: 1, id:1, value: 0, tags : []},
-            {sl: 2, id:2, value: 0, tags : []},
+            {id:1, value: 0, tags : []},
+            {id:2, value: 0, tags : []},
         ]
     };
     render(){
@@ -36,7 +36,7 @@ class Counters extends Component{
     handleAddItem = () => {
 
         let data = this.state.counters;
-        data.push({sl: 0,id:this.state.counters.length+1, value: 0, tags : []});
+        data.push({id: this.findNewId(), value: 0, tags : []});
         this.setState({counters: data});
     }
     handleResetAllItem = () => {
@@ -64,8 +64,12 @@ class Counters extends Component{
         counters[index].tags = [];
         this.setState({counters});
     }
-    
-    
+
+    /////
+    findNewId(){
+        const maxNumber = Math.max(...this.state.counters.map(o => o.id));
+        return maxNumber > 0 ? maxNumber + 1 : 1;
+    }
 }
 
 export default Counters;

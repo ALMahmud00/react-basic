@@ -4,7 +4,6 @@ import React, { Component } from "react";
 class Counter extends Component {
 
     render() {
-        console.log("Prop", this.props);
         return(
         <div className="card">
             <div className="card-body">
@@ -14,8 +13,8 @@ class Counter extends Component {
                 <button onClick={()=> this.props.onIncrement(this.props.counter)} className="btn btn-warning btn-sm m-2">  Increment  </button>
                 <button onClick={()=> this.props.onReset(this.props.counter)} className="btn btn-secondary btn-sm m-2">  Reset  </button>
                 <button onClick={() => this.props.onDelete(this.props.counter)} className="btn btn-danger btn-sm m-2">  Delete  </button>
-
-                <p className="card-text"> {this.renderTags(this.props.counter)} </p>
+                
+                <br/> {this.renderTags(this.props.counter)}
             </div>
         </div>
         );
